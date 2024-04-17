@@ -4,7 +4,10 @@ predictor_vars= function(vars =
                                "maxplayers",
                                "playingtime",
                                "minplaytime",
-                               "maxplaytime"
+                               "maxplaytime",
+                               "minage",
+                               "categories",
+                               "mechanics"
                              )
 ) {vars}
 

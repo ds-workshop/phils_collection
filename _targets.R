@@ -102,8 +102,14 @@ list(
                                 ids = id_vars(),
                                 predictors = predictor_vars()
                         ) |>
-                        step_mutate(time_per_player = playingtime/ maxplayers) %>%
+                        step_rm(has_role("extras")) |>
+                        add_preprocessing() |>
                         add_imputation() |>
+                        add_dummies(categories,
+                                    threshold = 1) |>
+                        add_dummies(mechanics,
+                                    threshold = 1) |>
+                        # remove zero variance
                         add_zv() |>
                         add_normalize()
                 
