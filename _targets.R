@@ -24,8 +24,14 @@ tar_option_set(
 
 # functions used in project
 tar_source("src/data/load_data.R")
+tar_source("src/models/splitting.R")
 
 # tar_source("other_functions.R") # Source other scripts as needed.
+
+# global objects defining the functions
+end_train_year = 2021
+valid_years = 2
+min_ratings = 25
 
 # Replace the target list below with your own:
 list(
@@ -55,5 +61,34 @@ list(
                                 collection
                         ) |>
                         prep_collection()
+        ),
+        tar_target(
+                name = split,
+                command = 
+                        collection_and_games |>
+                        split_by_year(
+                                end_train_year = end_train_year
+                        )
+        ),
+        tar_target(
+                name = train_data,
+                command = 
+                        split |>
+                        analysis() |>
+                        filter(usersrated >=min_ratings)
+        ),
+        tar_target(
+                name = test_data,
+                command = 
+                        split |>
+                        assessment()
+        ),
+        tar_target(
+                name = valid_split,
+                command = 
+                        train_data |>
+                        split_by_year(
+                                end_train_year = end_train_year-valid_years
+                        )
         )
 )
