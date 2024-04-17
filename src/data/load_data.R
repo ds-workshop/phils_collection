@@ -1,13 +1,14 @@
 # what: functions for training user models
 
-# load user colleciton
-load_user_collection = function(username) {
+# load games
+load_games = function(file = "data/raw/games") {
         
-        # get user collection
-        user_collection = bggUtils::get_user_collection(username)
+        qs::qread(file)
+}
+
+load_collection = function(file = "data/raw/collection.csv") {
         
-        user_collection
-        
+        readr::read_csv(file)
 }
 
 # # not run

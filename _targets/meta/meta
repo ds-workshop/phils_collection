@@ -1,0 +1,11 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+collection|stem|1fe985b7366c524f|fff4a24dd5f346ab|b41785bb36281d41|1771228424||t19830.0395691822s|493ddf0ca9d8fe86|3759|qs|local|vector|||0.179||
+collection_and_games|stem|976c7e41abd4f0f8|d68c82a16350ec2e|3195126c85d07193|348542047||t19830.0424648212s|d1c38a9da93608c5|56087530|qs|local|vector|||0.98||
+games|stem|d469ca017a206280|f08522923e7438e9|79f441d651a30ed8|-1798292153||t19830.0395667893s|a0df7b275302346b|72229832|qs|local|vector|||5.578||
+games_processed|stem|fdc3d22546b6dd3c|7f0f84bc64924e05|6ecd32d14c7fc043|-265669863||t19830.0396747423s|dcab3af8a8657a76|56042753|qs|local|vector|||8.338||
+join_games_and_collection|function|1176a2a3ba46688e|||||||||||||||
+load_collection|function|6dcb0aa0861bc2cb|||||||||||||||
+load_games|function|fea4d2b608f16f8a|||||||||||||||
+load_user_collection|function|61d6e7b8a3b98072|||||||||||||||
+prep_collection|function|b3663217a7c12621|||||||||||||||
+preprocess_games|function|392af6f4ef40e26b|||||||||||||||
