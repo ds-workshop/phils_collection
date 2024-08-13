@@ -9,256 +9,249 @@ library(tarchetypes) # Load other packages as needed.
 
 # Set target options:
 tar_option_set(
-        # global packages used in pipleine
-        packages = c("tibble",
-                     "dplyr",
-                     "rsample",
-                     "tidymodels",
-                     "quarto",
-                     "visNetwork",
-                     "bggUtils"),
-        # default format for storing targets
-        format = "qs",
-        seed = 1999
+    # global packages used in pipleine
+    packages = c("tibble",
+                 "dplyr",
+                 "rsample",
+                 "tidymodels",
+                 "glmnet",
+                 "bonsai",
+                 "lightgbm",
+                 "quarto",
+                 "visNetwork",
+                 "bggUtils"),
+    # default format for storing targets
+    format = "qs",
+    # set memory to transient
+    memory = "transient",
+    seed = 1999
 )
 
 # functions used in project
-tar_source("src/data/load_data.R")
-tar_source("src/models/splitting.R")
-tar_source("src/models/training.R")
+tar_source("src/")
 
-# tar_source("other_functions.R") # Source other scripts as needed.
-
-# global objects defining the functions
+# global objects referenced in pipeline
 end_train_year = 2021
 valid_years = 2
-min_ratings = 25
+min_ratings = 100
 
+# tar_source("other_functions.R") # Source other scripts as needed.
 # Replace the target list below with your own:
 list(
-        tar_target(
-                name = games,
-                command = 
-                        load_games(
-                                file = 'data/raw/games'
-                        )
-        ),
-        tar_target(
-                name = games_processed,
-                command = 
-                        games |>
-                        preprocess_games()
-        ),
-        tar_target(
-                name = collection,
-                command = 
-                        load_collection()
-        ),
-        tar_target(
-                name = collection_and_games,
-                command = 
-                        join_games_and_collection(
-                                games_processed,
-                                collection
-                        ) |>
-                        prep_collection()
-        ),
-        tar_target(
-                name = split,
-                command = 
-                        collection_and_games |>
-                        split_by_year(
-                                end_train_year = end_train_year
-                        )
-        ),
-        tar_target(
-                name = train_data,
-                command = 
-                        split |>
-                        analysis() |>
-                        filter(usersrated >=min_ratings)
-        ),
-        tar_target(
-                name = test_data,
-                command = 
-                        split |>
-                        assessment()
-        ),
-        tar_target(
-                name = valid_split,
-                command = 
-                        train_data |>
-                        split_by_year(
-                                end_train_year = end_train_year-valid_years
-                        )
-        ),
-        tar_target(
-                name = recipe,
-                command = 
-                        valid_split |>
-                        analysis() |>
-                        build_recipe(
-                                outcome = own,
-                                ids = id_vars(),
-                                predictors = predictor_vars()
-                        ) |>
-                        step_rm(has_role("extras")) |>
-                        add_preprocessing() |>
-                        add_imputation() |>
-                        add_bgg_dummies(mechanics_threshold = 5) |>
-                        # spline for year
-                        add_splines(vars = "year", degree = 4) |>
-                        # splines with fifth degree polynomials for mechanics/categories
-                        add_splines(c("number_mechanics", "number_categories")) |>
-                        # remove zero variance
-                        add_zv() |>
-                        add_normalize()
-        ),
-        tar_target(
-                name = model_spec,
-                command = 
-                        logistic_reg(penalty = tune::tune(),
-                                     mixture = tune::tune()) %>%
-                        set_engine("glmnet")
-        ),
-        tar_target(
-                name = tune_metrics,
-                command = 
-                        metric_set(yardstick::mn_log_loss,
-                                   yardstick::roc_auc)
-        ),
-        tar_target(
-                name = tuning_grid,
-                command = 
-                        expand.grid(
-                                penalty = 10 ^ seq(-3, -0.75, length = 15),
-                                mixture = c(0)
-                        )
-        ),
-        tar_target(
-                name = resamples,
-                command = 
-                        valid_split |>
-                        analysis() |>
-                        vfold_cv(
-                                v = 5,
-                                strata = own
-                        )
-        ),
-        tar_target(
-                name = wflow,
-                command = 
-                        workflow() |>
-                        add_recipe(
-                                recipe
-                        ) |>
-                        add_model(
-                                model_spec
-                        )
-        ),
-        tar_target(
-                name = tuned,
-                command = 
-                        wflow |>
-                        tune_grid(
-                                resamples = resamples,
-                                grid = tuning_grid,
-                                control = 
-                                        control_grid(
-                                                verbose = T,
-                                                save_pred = T),
-                                metrics = tune_metrics
-                        )
-        ),
-        tar_target(
-                name = plot_tuning,
-                command = 
-                        tuned |>
-                        autoplot() +
-                        theme_bw()
-        ),
-        tar_target(
-                name = best_par,
-                command = 
-                        tuned |> 
-                        select_best(metric = 'mn_log_loss')
-        ),
-        tar_target(
-                name = preds_tuned_best,
-                command = 
-                        tuned |> 
-                        collect_predictions(parameters = best_par) |> 
-                        arrange(desc(.pred_yes)) |> 
-                        left_join(
-                                tuned |> 
-                                        pluck("splits", 1) |> 
-                                        pluck("data") |>
-                                        select(game_id, name, yearpublished) |>
-                                        mutate(.row = row_number())
-                        )
-        ),
-        tar_target(
-                name = last_fit,
-                command = 
-                        wflow |> 
-                        finalize_workflow(parameters = best_par) |> 
-                        last_fit(
-                                split = valid_split,
-                                metrics = tune_metrics
-                        )
-        ),
-        tar_target(
-                name = preds_valid,
-                command = 
-                        last_fit |> 
-                        collect_predictions() |>
-                        arrange(desc(.pred_yes)) |> 
-                        left_join(
-                                last_fit |> 
-                                        pluck("splits", 1) |> 
-                                        pluck("data") |>
-                                        select(game_id, name, yearpublished) |>
-                                        mutate(.row = row_number())
-                        )
-        ),
-        tar_target(
-                name = metrics_valid,
-                command = 
-                        last_fit |>
-                        collect_metrics()
-        ),
-        tar_target(
-                name = final_fit,
-                command = 
-                        wflow |>
-                        finalize_workflow(parameters = best_par) |>
-                        fit(
-                                valid_split$data
-                        )
-        ),
-        tar_target(
-                name = preds_test,
-                command =
-                        final_fit |>
-                        augment(test_data)
-        ),
-        tar_target(
-                name = metrics_test,
-                command = 
-                        preds_test |> 
-                        group_by(yearpublished) |> 
-                        tune_metrics(own, .pred_yes, event_level = 'second')
-        ),
-        tar_target(
-                name = results,
-                command = 
-                        {
-
-                                results = metrics_valid |>
-                                        mutate_if(is.numeric, round, 4)
-
-                                write.csv(results, "results.csv")
-                        },
-                format = "file"
-        )
+    tar_target(
+        games_file,
+        command = 'data/raw/games',
+        format = 'file'
+    ),
+    tar_target(
+        collection_file,
+        command = 'data/raw/collection.csv',
+        format = 'file'
+    ),
+    # load in datasets
+    tar_plan(
+        games = 
+            load_games(games_file),
+        collection = 
+            load_collection(collection_file),
+        games_prepared = 
+            games |> 
+            preprocess_games(),
+        collection_and_games = 
+            join_games_and_collection(games_prepared,
+                                      collection = collection) |>
+            prep_collection()
+    ),
+    # create a training/test set for the user based on years
+    tar_target(
+        split,
+        collection_and_games |>
+            split_by_year(end_train_year,
+                          min_ratings)
+    ),
+    # extract test data; set aside to predict at the end
+    tar_target(
+        test_data,
+        split |>
+            testing()
+    ),
+    # extract train data
+    tar_target(
+        train_data,
+        split |>
+            training()
+    ),
+    # use this to create an additional validation split
+    tar_target(
+        valid_split,
+        train_data |>
+            split_by_year(end_train_year - valid_years,
+                          min_ratings)
+    ),
+    # create recipe
+    tar_target(
+        recipe,
+        valid_split |>
+            training() |>
+            build_recipe(outcome = own)
+    ),
+    # create recipe for linear models
+    tar_target(
+        linear_recipe,
+        recipe |>
+            add_bgg_preprocessing() |>
+            add_linear_preprocessing()
+    ),
+    # create recipe for trees
+    tar_target(
+        trees_recipe,
+        recipe |>
+            add_bgg_preprocessing()
+    ),
+    # create model specs
+    # logistic regression
+    tar_target(
+        glmnet_mod,
+        logistic_reg(penalty = tune::tune(),
+                     mixture = tune::tune()) |>
+            set_engine("glmnet")
+    ),
+    # lightgbm
+    tar_target(
+        lightgbm_mod,
+        boost_tree(mode = "classification",
+                   trees = tune::tune(),
+                   min_n = tune::tune(),
+                   tree_depth = tune::tune()) |>
+            set_engine("lightgbm", 
+                       objective = "binary")
+    ),
+    # workflows
+    tar_target(
+        glmnet_wflow,
+        command = 
+            workflow() |>
+            add_model(glmnet_mod) |>
+            add_recipe(linear_recipe)
+    ),
+    tar_target(
+        lightgbm_wflow,
+        command = 
+            workflow() |>
+            add_model(lightgbm_mod) |>
+            add_recipe(trees_recipe)
+    ),
+    # control tuning
+    tar_target(
+        tune_control,
+        command = 
+            control_grid(verbose = T,
+                         save_pred = T,
+                         save_workflow = T,
+                         event_level = 'second')
+    ),
+    # set metrics for evaluation
+    tar_target(
+        my_metrics,
+        command = 
+            yardstick::metric_set(yardstick::roc_auc,
+                                  yardstick::pr_auc,
+                                  yardstick::mn_log_loss)
+    ),
+    # tune models on validation set
+    # glmnet
+    tar_target(
+        glmnet_tuned,
+        command = 
+            glmnet_wflow |>
+            tune_grid(
+                resamples = valid_split |> make_rset(),
+                grid = glmnet_grid(),
+                metrics = my_metrics,
+                control = tune_control
+            )
+    ),
+    # lightgbm 
+    tar_target(
+        lightgbm_tuned,
+        command = 
+            lightgbm_wflow |>
+            tune_grid(
+                resamples = valid_split |> make_rset(),
+                grid = 10,
+                metrics = my_metrics,
+                control = tune_control
+            )
+    ),
+    # plot tuning results
+    tar_target(
+        glmnet_plot,
+        command = 
+            glmnet_tuned |>
+            autoplot()
+    ),
+    #
+    tar_target(
+        lightgbm_plot,
+        command = 
+            lightgbm_tuned |>
+            autoplot()
+    ),
+    # convert to workflow set
+    tar_target(
+        wflows,
+        command = 
+            as_workflow_set(
+                "glmnet_full_features" = glmnet_tuned,
+                "lightgbm_full_features" = lightgbm_tuned
+            )
+    ),
+    # collect results from worfklow sets
+    tar_target(
+        valid_metrics,
+        wflows |>
+            rank_results(rank_metric = 'mn_log_loss')
+    ),
+    # fit best model based on log loss;
+    # this will dynamically select the best model from those in the workflow set
+    tar_target(
+        best_wflow,
+        command = 
+            wflows |>
+            select_best_wflow(metric = 'mn_log_loss')
+    ),
+    tar_target(
+        best_model,
+        command = 
+            wflows |>
+            filter(wflow_id == best_wflow) |>
+            fit_best(metric = 'mn_log_loss')
+    ),
+    # convert to vetiver
+    tar_target(
+        vetiver_model,
+        command = 
+            best_model |> 
+            vetiver::vetiver_model(
+                model_name = best_wflow,
+                metadata = list(split = split,
+                                end_train_year = end_train_year,
+                                metrics = valid_metrics
+                )
+            )
+    ),
+    # predict test data
+    tar_target(
+        test_preds,
+        vetiver_model |>
+            augment(test_data)
+    ),
+    # evaluate test results
+    tar_target(
+        test_metrics,
+        test_preds |>
+            my_metrics(truth = own,
+                       .pred_yes,
+                       event_level = 'second')
+    )
 )
