@@ -58,7 +58,7 @@ get_file_history = function(file = file) {
                     # read in file
                     tab =
                         read.csv(file) |>
-                        select(-X)
+                        dplyr::select(-X)
                     
                     tab |>
                         tibble::add_column(
