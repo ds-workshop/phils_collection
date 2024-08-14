@@ -44,8 +44,8 @@ transparent, responsible reporting for a trained machine learning model.
 ## Model details
 
 - A glmnet classification modeling workflow using 15 features
-- Version 20240814T164134Z-6e357 of this model was published at
-  2024-08-14 11:41:34
+- Version 20240814T171719Z-6e357 of this model was published at
+  2024-08-14 12:17:19
 
 ## Model candidates
 
@@ -66,71 +66,17 @@ valid_metrics |>
 
 <div>
 
-<div id="oborwfyiwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wktazbbyhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | wflow_id               | .config               | .metric     |  mean | std_err |   n | preprocessor | model        | rank |
 |:-----------------------|:----------------------|:------------|------:|--------:|----:|:-------------|:-------------|-----:|
 | glmnet_full_features   | Preprocessor1_Model08 | mn_log_loss | 0.073 |      NA |   1 | recipe       | logistic_reg |    1 |
-| glmnet_full_features   | Preprocessor1_Model07 | mn_log_loss | 0.074 |      NA |   1 | recipe       | logistic_reg |    2 |
-| glmnet_full_features   | Preprocessor1_Model09 | mn_log_loss | 0.074 |      NA |   1 | recipe       | logistic_reg |    3 |
-| glmnet_full_features   | Preprocessor1_Model06 | mn_log_loss | 0.078 |      NA |   1 | recipe       | logistic_reg |    4 |
-| glmnet_full_features   | Preprocessor1_Model10 | mn_log_loss | 0.079 |      NA |   1 | recipe       | logistic_reg |    5 |
-| lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.079 |      NA |   1 | recipe       | boost_tree   |    6 |
-| lightgbm_full_features | Preprocessor1_Model06 | mn_log_loss | 0.082 |      NA |   1 | recipe       | boost_tree   |    7 |
-| glmnet_full_features   | Preprocessor1_Model05 | mn_log_loss | 0.084 |      NA |   1 | recipe       | logistic_reg |    8 |
-| glmnet_full_features   | Preprocessor1_Model04 | mn_log_loss | 0.093 |      NA |   1 | recipe       | logistic_reg |    9 |
-| lightgbm_full_features | Preprocessor1_Model09 | mn_log_loss | 0.099 |      NA |   1 | recipe       | boost_tree   |   10 |
-| glmnet_full_features   | Preprocessor1_Model03 | mn_log_loss | 0.105 |      NA |   1 | recipe       | logistic_reg |   11 |
-| glmnet_full_features   | Preprocessor1_Model02 | mn_log_loss | 0.119 |      NA |   1 | recipe       | logistic_reg |   12 |
-| glmnet_full_features   | Preprocessor1_Model01 | mn_log_loss | 0.129 |      NA |   1 | recipe       | logistic_reg |   13 |
-| lightgbm_full_features | Preprocessor1_Model07 | mn_log_loss | 0.207 |      NA |   1 | recipe       | boost_tree   |   14 |
-| lightgbm_full_features | Preprocessor1_Model01 | mn_log_loss | 0.211 |      NA |   1 | recipe       | boost_tree   |   15 |
-| lightgbm_full_features | Preprocessor1_Model02 | mn_log_loss | 0.211 |      NA |   1 | recipe       | boost_tree   |   16 |
-| lightgbm_full_features | Preprocessor1_Model10 | mn_log_loss | 0.212 |      NA |   1 | recipe       | boost_tree   |   17 |
-| lightgbm_full_features | Preprocessor1_Model08 | mn_log_loss | 0.216 |      NA |   1 | recipe       | boost_tree   |   18 |
-| lightgbm_full_features | Preprocessor1_Model05 | mn_log_loss | 0.217 |      NA |   1 | recipe       | boost_tree   |   19 |
-| lightgbm_full_features | Preprocessor1_Model03 | mn_log_loss | 0.230 |      NA |   1 | recipe       | boost_tree   |   20 |
+| lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.079 |      NA |   1 | recipe       | boost_tree   |    2 |
 | glmnet_full_features   | Preprocessor1_Model08 | pr_auc      | 0.278 |      NA |   1 | recipe       | logistic_reg |    1 |
-| glmnet_full_features   | Preprocessor1_Model07 | pr_auc      | 0.269 |      NA |   1 | recipe       | logistic_reg |    2 |
-| glmnet_full_features   | Preprocessor1_Model09 | pr_auc      | 0.308 |      NA |   1 | recipe       | logistic_reg |    3 |
-| glmnet_full_features   | Preprocessor1_Model06 | pr_auc      | 0.259 |      NA |   1 | recipe       | logistic_reg |    4 |
-| glmnet_full_features   | Preprocessor1_Model10 | pr_auc      | 0.301 |      NA |   1 | recipe       | logistic_reg |    5 |
-| lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.230 |      NA |   1 | recipe       | boost_tree   |    6 |
-| lightgbm_full_features | Preprocessor1_Model06 | pr_auc      | 0.157 |      NA |   1 | recipe       | boost_tree   |    7 |
-| glmnet_full_features   | Preprocessor1_Model05 | pr_auc      | 0.252 |      NA |   1 | recipe       | logistic_reg |    8 |
-| glmnet_full_features   | Preprocessor1_Model04 | pr_auc      | 0.237 |      NA |   1 | recipe       | logistic_reg |    9 |
-| lightgbm_full_features | Preprocessor1_Model09 | pr_auc      | 0.255 |      NA |   1 | recipe       | boost_tree   |   10 |
-| glmnet_full_features   | Preprocessor1_Model03 | pr_auc      | 0.233 |      NA |   1 | recipe       | logistic_reg |   11 |
-| glmnet_full_features   | Preprocessor1_Model02 | pr_auc      | 0.230 |      NA |   1 | recipe       | logistic_reg |   12 |
-| glmnet_full_features   | Preprocessor1_Model01 | pr_auc      | 0.227 |      NA |   1 | recipe       | logistic_reg |   13 |
-| lightgbm_full_features | Preprocessor1_Model07 | pr_auc      | 0.236 |      NA |   1 | recipe       | boost_tree   |   14 |
-| lightgbm_full_features | Preprocessor1_Model01 | pr_auc      | 0.241 |      NA |   1 | recipe       | boost_tree   |   15 |
-| lightgbm_full_features | Preprocessor1_Model02 | pr_auc      | 0.235 |      NA |   1 | recipe       | boost_tree   |   16 |
-| lightgbm_full_features | Preprocessor1_Model10 | pr_auc      | 0.246 |      NA |   1 | recipe       | boost_tree   |   17 |
-| lightgbm_full_features | Preprocessor1_Model08 | pr_auc      | 0.212 |      NA |   1 | recipe       | boost_tree   |   18 |
-| lightgbm_full_features | Preprocessor1_Model05 | pr_auc      | 0.232 |      NA |   1 | recipe       | boost_tree   |   19 |
-| lightgbm_full_features | Preprocessor1_Model03 | pr_auc      | 0.204 |      NA |   1 | recipe       | boost_tree   |   20 |
+| lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.230 |      NA |   1 | recipe       | boost_tree   |    2 |
 | glmnet_full_features   | Preprocessor1_Model08 | roc_auc     | 0.934 |      NA |   1 | recipe       | logistic_reg |    1 |
-| glmnet_full_features   | Preprocessor1_Model07 | roc_auc     | 0.926 |      NA |   1 | recipe       | logistic_reg |    2 |
-| glmnet_full_features   | Preprocessor1_Model09 | roc_auc     | 0.938 |      NA |   1 | recipe       | logistic_reg |    3 |
-| glmnet_full_features   | Preprocessor1_Model06 | roc_auc     | 0.912 |      NA |   1 | recipe       | logistic_reg |    4 |
-| glmnet_full_features   | Preprocessor1_Model10 | roc_auc     | 0.937 |      NA |   1 | recipe       | logistic_reg |    5 |
-| lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.925 |      NA |   1 | recipe       | boost_tree   |    6 |
-| lightgbm_full_features | Preprocessor1_Model06 | roc_auc     | 0.924 |      NA |   1 | recipe       | boost_tree   |    7 |
-| glmnet_full_features   | Preprocessor1_Model05 | roc_auc     | 0.894 |      NA |   1 | recipe       | logistic_reg |    8 |
-| glmnet_full_features   | Preprocessor1_Model04 | roc_auc     | 0.875 |      NA |   1 | recipe       | logistic_reg |    9 |
-| lightgbm_full_features | Preprocessor1_Model09 | roc_auc     | 0.922 |      NA |   1 | recipe       | boost_tree   |   10 |
-| glmnet_full_features   | Preprocessor1_Model03 | roc_auc     | 0.852 |      NA |   1 | recipe       | logistic_reg |   11 |
-| glmnet_full_features   | Preprocessor1_Model02 | roc_auc     | 0.835 |      NA |   1 | recipe       | logistic_reg |   12 |
-| glmnet_full_features   | Preprocessor1_Model01 | roc_auc     | 0.824 |      NA |   1 | recipe       | logistic_reg |   13 |
-| lightgbm_full_features | Preprocessor1_Model07 | roc_auc     | 0.889 |      NA |   1 | recipe       | boost_tree   |   14 |
-| lightgbm_full_features | Preprocessor1_Model01 | roc_auc     | 0.929 |      NA |   1 | recipe       | boost_tree   |   15 |
-| lightgbm_full_features | Preprocessor1_Model02 | roc_auc     | 0.928 |      NA |   1 | recipe       | boost_tree   |   16 |
-| lightgbm_full_features | Preprocessor1_Model10 | roc_auc     | 0.902 |      NA |   1 | recipe       | boost_tree   |   17 |
-| lightgbm_full_features | Preprocessor1_Model08 | roc_auc     | 0.914 |      NA |   1 | recipe       | boost_tree   |   18 |
-| lightgbm_full_features | Preprocessor1_Model05 | roc_auc     | 0.911 |      NA |   1 | recipe       | boost_tree   |   19 |
-| lightgbm_full_features | Preprocessor1_Model03 | roc_auc     | 0.914 |      NA |   1 | recipe       | boost_tree   |   20 |
+| lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.925 |      NA |   1 | recipe       | boost_tree   |    2 |
 
 </div>
 
@@ -178,7 +124,7 @@ test_data |>
 
 <div>
 
-<div id="nycmjvfcyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fpedxoxhzq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | n    |
@@ -218,7 +164,7 @@ preds |>
 
 <div>
 
-<div id="ebaambicwk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ritcswbhkp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | .metric     | .estimator | .estimate |
@@ -269,7 +215,7 @@ preds |>
 
 <div>
 
-<div id="uohktohfdu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="myxhcuvata" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | game_id | name                                                                | yearpublished | .pred_yes | own |

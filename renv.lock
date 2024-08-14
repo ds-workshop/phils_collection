@@ -2027,22 +2027,6 @@
       ],
       "Hash": "397b7b2a265bc5a7a06852524dabae20"
     },
-    "repr": {
-      "Package": "repr",
-      "Version": "1.1.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "base64enc",
-        "grDevices",
-        "htmltools",
-        "jsonlite",
-        "pillar",
-        "utils"
-      ],
-      "Hash": "1393acc49816f4fe143d87fb33e75631"
-    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.1.4",
@@ -2287,30 +2271,6 @@
         "shiny"
       ],
       "Hash": "7dc8feb4207741ff581422a04fc8f3ea"
-    },
-    "skimr": {
-      "Package": "skimr",
-      "Version": "2.1.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "dplyr",
-        "knitr",
-        "magrittr",
-        "pillar",
-        "purrr",
-        "repr",
-        "rlang",
-        "stats",
-        "stringr",
-        "tibble",
-        "tidyr",
-        "tidyselect",
-        "vctrs"
-      ],
-      "Hash": "8f138ff2c8fbea9e0a523f6c399c0386"
     },
     "slider": {
       "Package": "slider",

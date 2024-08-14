@@ -28,7 +28,7 @@ tar_option_set(
 )
 
 # functions used in project
-tar_source("src/")
+suppressMessages({tar_source("src/")})
 
 # global objects referenced in pipeline
 end_train_year = 2021
@@ -213,7 +213,8 @@ list(
     tar_target(
         valid_metrics,
         wflows |>
-            rank_results(rank_metric = 'mn_log_loss')
+            rank_results(rank_metric = 'mn_log_loss',
+                         select_best = T)
     ),
     # fit best model based on log loss;
     # this will dynamically select the best model from those in the workflow set
@@ -268,8 +269,11 @@ list(
     tar_target(
         write_metrics,
         command = 
-            test_metrics |>
-            write.csv("targets-runs/test_metrics.csv")
+            {
+                test_metrics |> write.csv("targets-runs/test_metrics.csv")
+                valid_metrics |> write.csv("targets-runs/valid_metrics.csv")
+            }
+
     ),
     # render quarto report
     tar_quarto(
