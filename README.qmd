@@ -66,7 +66,7 @@ valid |>
         names_from = .metric,
         values_from = mean
     ) |>
-    arrange(mn_log_loss)
+    arrange(mn_log_loss) |>
     gt::gt() |>
     gt::as_raw_html()
 
@@ -80,7 +80,7 @@ test =
     get_file_history("targets-runs/test_metrics.csv")
 
 test |>
-    group_by(wflow_id )|>
+    group_by(wflow_id) |>
     slice_max(when, n =1) |>
     ungroup() |>
     select(sha, when, author, version, wflow_id, .metric, .estimate) |>
