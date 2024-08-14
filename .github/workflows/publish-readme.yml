@@ -39,3 +39,4 @@ jobs:
           cache-version: 1
         env:
           RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.rstudio.com/all/latest
+          GITHUB_PAT: ${{ secrets.GH_PAT}}
