@@ -39,11 +39,3 @@ jobs:
           cache-version: 1
         env:
           RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.rstudio.com/all/latest
-          
-      - name: Run README
-        shell: bash
-      - run: |
-          git config --global user.name ${{ github.actor }}
-          quarto render README.qmd
-          git commit README.md -m 'Re-build README.qmd' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
