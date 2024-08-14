@@ -15,60 +15,71 @@ graph LR
   style Graph fill:#FFFFFF00,stroke:#000000;
   subgraph Legend
     direction LR
+    x2db1ec7a48f65a9b([""Outdated""]):::outdated --- xf1522833a4d242c5([""Up to date""]):::uptodate
     xf1522833a4d242c5([""Up to date""]):::uptodate --- xd03d7c7dd2ddda2b([""Stem""]):::none
   end
   subgraph Graph
     direction LR
-    xeffe44ed84879274(["model_meta"]):::uptodate --> xba368001e67990cc(["model_report"]):::uptodate
-    x1bddabfef734c169(["my_metrics"]):::uptodate --> xba368001e67990cc(["model_report"]):::uptodate
-    xbb782543df7528d1(["test_data"]):::uptodate --> xba368001e67990cc(["model_report"]):::uptodate
-    xe0bb173f910bd7f0(["valid_metrics"]):::uptodate --> xba368001e67990cc(["model_report"]):::uptodate
-    x3983243dd18164e7(["wflows_plot"]):::uptodate --> xba368001e67990cc(["model_report"]):::uptodate
-    x004377234d3bacac(["recipe"]):::uptodate --> xc88728c0e923dd78(["linear_recipe"]):::uptodate
-    x574e5c623f867900(["games"]):::uptodate --> x1e01b6b8e5aa4e61(["games_prepared"]):::uptodate
-    x7c91a03970e15376(["valid_split"]):::uptodate --> x004377234d3bacac(["recipe"]):::uptodate
-    xf7b68bfa4f5b3a26(["glmnet_tuned"]):::uptodate --> xfcd66df9fb8c7e8a(["wflows"]):::uptodate
-    x3045fd98bf132297(["lightgbm_tuned"]):::uptodate --> xfcd66df9fb8c7e8a(["wflows"]):::uptodate
-    xf06d6eef7829004f(["glmnet_wflow"]):::uptodate --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::uptodate
-    x1bddabfef734c169(["my_metrics"]):::uptodate --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::uptodate
-    xbd276234e7c5b0df(["tune_control"]):::uptodate --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::uptodate
-    x7c91a03970e15376(["valid_split"]):::uptodate --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::uptodate
-    xeffe44ed84879274(["model_meta"]):::uptodate --> x0f09e4c17eb3276c(["test_metrics"]):::uptodate
-    x1bddabfef734c169(["my_metrics"]):::uptodate --> x0f09e4c17eb3276c(["test_metrics"]):::uptodate
-    xbb782543df7528d1(["test_data"]):::uptodate --> x0f09e4c17eb3276c(["test_metrics"]):::uptodate
-    xad2d2a7a16304874(["lightgbm_wflow"]):::uptodate --> x3045fd98bf132297(["lightgbm_tuned"]):::uptodate
-    x1bddabfef734c169(["my_metrics"]):::uptodate --> x3045fd98bf132297(["lightgbm_tuned"]):::uptodate
-    xbd276234e7c5b0df(["tune_control"]):::uptodate --> x3045fd98bf132297(["lightgbm_tuned"]):::uptodate
-    x7c91a03970e15376(["valid_split"]):::uptodate --> x3045fd98bf132297(["lightgbm_tuned"]):::uptodate
-    xfcd66df9fb8c7e8a(["wflows"]):::uptodate --> x3983243dd18164e7(["wflows_plot"]):::uptodate
-    xe28457b7180d9865(["split"]):::uptodate --> x50558fc6e6286095(["train_data"]):::uptodate
-    xe28457b7180d9865(["split"]):::uptodate --> xbb782543df7528d1(["test_data"]):::uptodate
-    x838f1e2fc49912df(["collection_file"]):::uptodate --> xcd8149c2b07551bf(["collection"]):::uptodate
-    xfcd66df9fb8c7e8a(["wflows"]):::uptodate --> xe0bb173f910bd7f0(["valid_metrics"]):::uptodate
-    x18c439c1d0279e5c(["vetiver_model"]):::uptodate --> xeffe44ed84879274(["model_meta"]):::uptodate
-    xbf5ec9eec0b06faa(["games_file"]):::uptodate --> x574e5c623f867900(["games"]):::uptodate
-    x004377234d3bacac(["recipe"]):::uptodate --> x55e8bf7e53595ba9(["trees_recipe"]):::uptodate
-    x9b0c9170b8902027(["best_model"]):::uptodate --> x18c439c1d0279e5c(["vetiver_model"]):::uptodate
-    x7e5555b2e63a26f0(["best_wflow"]):::uptodate --> x18c439c1d0279e5c(["vetiver_model"]):::uptodate
-    xe0bb173f910bd7f0(["valid_metrics"]):::uptodate --> x18c439c1d0279e5c(["vetiver_model"]):::uptodate
-    x7c91a03970e15376(["valid_split"]):::uptodate --> x18c439c1d0279e5c(["vetiver_model"]):::uptodate
-    xfcd66df9fb8c7e8a(["wflows"]):::uptodate --> x7e5555b2e63a26f0(["best_wflow"]):::uptodate
-    x7e5555b2e63a26f0(["best_wflow"]):::uptodate --> x9b0c9170b8902027(["best_model"]):::uptodate
-    xfcd66df9fb8c7e8a(["wflows"]):::uptodate --> x9b0c9170b8902027(["best_model"]):::uptodate
-    x50558fc6e6286095(["train_data"]):::uptodate --> x7c91a03970e15376(["valid_split"]):::uptodate
-    x0f09e4c17eb3276c(["test_metrics"]):::uptodate --> xbc2f8d07f8113aa5(["write_metrics"]):::uptodate
-    xe0bb173f910bd7f0(["valid_metrics"]):::uptodate --> xbc2f8d07f8113aa5(["write_metrics"]):::uptodate
-    xe7c688145125e4e7(["glmnet_mod"]):::uptodate --> xf06d6eef7829004f(["glmnet_wflow"]):::uptodate
-    xc88728c0e923dd78(["linear_recipe"]):::uptodate --> xf06d6eef7829004f(["glmnet_wflow"]):::uptodate
-    xec3a6239d23d9fb4(["lightgbm_mod"]):::uptodate --> xad2d2a7a16304874(["lightgbm_wflow"]):::uptodate
-    x55e8bf7e53595ba9(["trees_recipe"]):::uptodate --> xad2d2a7a16304874(["lightgbm_wflow"]):::uptodate
-    xcd8149c2b07551bf(["collection"]):::uptodate --> x88354a4a9990c907(["collection_and_games"]):::uptodate
-    x1e01b6b8e5aa4e61(["games_prepared"]):::uptodate --> x88354a4a9990c907(["collection_and_games"]):::uptodate
-    x88354a4a9990c907(["collection_and_games"]):::uptodate --> xe28457b7180d9865(["split"]):::uptodate
+    xfcd66df9fb8c7e8a(["wflows"]):::outdated --> xe0bb173f910bd7f0(["valid_metrics"]):::outdated
+    xe7c688145125e4e7(["glmnet_mod"]):::outdated --> xfd05af60d2c5a8ee(["glmnet_pca_wflow"]):::outdated
+    x52a5839037ffcfae(["pca_recipe"]):::outdated --> xfd05af60d2c5a8ee(["glmnet_pca_wflow"]):::outdated
+    xcd8149c2b07551bf(["collection"]):::outdated --> x88354a4a9990c907(["collection_and_games"]):::outdated
+    x1e01b6b8e5aa4e61(["games_prepared"]):::outdated --> x88354a4a9990c907(["collection_and_games"]):::outdated
+    x574e5c623f867900(["games"]):::outdated --> x1e01b6b8e5aa4e61(["games_prepared"]):::outdated
+    xfcd66df9fb8c7e8a(["wflows"]):::outdated --> x3983243dd18164e7(["wflows_plot"]):::outdated
+    x9b0c9170b8902027(["best_model"]):::outdated --> x18c439c1d0279e5c(["vetiver_model"]):::outdated
+    x7e5555b2e63a26f0(["best_wflow"]):::outdated --> x18c439c1d0279e5c(["vetiver_model"]):::outdated
+    xe0bb173f910bd7f0(["valid_metrics"]):::outdated --> x18c439c1d0279e5c(["vetiver_model"]):::outdated
+    x7c91a03970e15376(["valid_split"]):::outdated --> x18c439c1d0279e5c(["vetiver_model"]):::outdated
+    xeffe44ed84879274(["model_meta"]):::outdated --> xba368001e67990cc(["model_report"]):::outdated
+    x1bddabfef734c169(["my_metrics"]):::outdated --> xba368001e67990cc(["model_report"]):::outdated
+    xbb782543df7528d1(["test_data"]):::outdated --> xba368001e67990cc(["model_report"]):::outdated
+    xe0bb173f910bd7f0(["valid_metrics"]):::outdated --> xba368001e67990cc(["model_report"]):::outdated
+    x3983243dd18164e7(["wflows_plot"]):::outdated --> xba368001e67990cc(["model_report"]):::outdated
+    x7c91a03970e15376(["valid_split"]):::outdated --> x004377234d3bacac(["recipe"]):::outdated
+    x004377234d3bacac(["recipe"]):::outdated --> xc88728c0e923dd78(["linear_recipe"]):::outdated
+    x50558fc6e6286095(["train_data"]):::outdated --> x7c91a03970e15376(["valid_split"]):::outdated
+    xec3a6239d23d9fb4(["lightgbm_mod"]):::outdated --> xad2d2a7a16304874(["lightgbm_wflow"]):::outdated
+    x55e8bf7e53595ba9(["trees_recipe"]):::outdated --> xad2d2a7a16304874(["lightgbm_wflow"]):::outdated
+    x0f09e4c17eb3276c(["test_metrics"]):::outdated --> xbc2f8d07f8113aa5(["write_metrics"]):::outdated
+    xe0bb173f910bd7f0(["valid_metrics"]):::outdated --> xbc2f8d07f8113aa5(["write_metrics"]):::outdated
+    x004377234d3bacac(["recipe"]):::outdated --> x55e8bf7e53595ba9(["trees_recipe"]):::outdated
+    x838f1e2fc49912df(["collection_file"]):::uptodate --> xcd8149c2b07551bf(["collection"]):::outdated
+    x23b44b68d822d267(["glmnet_pca_tuned"]):::outdated --> xfcd66df9fb8c7e8a(["wflows"]):::outdated
+    xf7b68bfa4f5b3a26(["glmnet_tuned"]):::outdated --> xfcd66df9fb8c7e8a(["wflows"]):::outdated
+    x3045fd98bf132297(["lightgbm_tuned"]):::outdated --> xfcd66df9fb8c7e8a(["wflows"]):::outdated
+    xeffe44ed84879274(["model_meta"]):::outdated --> x0f09e4c17eb3276c(["test_metrics"]):::outdated
+    x1bddabfef734c169(["my_metrics"]):::outdated --> x0f09e4c17eb3276c(["test_metrics"]):::outdated
+    xbb782543df7528d1(["test_data"]):::outdated --> x0f09e4c17eb3276c(["test_metrics"]):::outdated
+    xfd05af60d2c5a8ee(["glmnet_pca_wflow"]):::outdated --> x23b44b68d822d267(["glmnet_pca_tuned"]):::outdated
+    x1bddabfef734c169(["my_metrics"]):::outdated --> x23b44b68d822d267(["glmnet_pca_tuned"]):::outdated
+    xbd276234e7c5b0df(["tune_control"]):::outdated --> x23b44b68d822d267(["glmnet_pca_tuned"]):::outdated
+    x7c91a03970e15376(["valid_split"]):::outdated --> x23b44b68d822d267(["glmnet_pca_tuned"]):::outdated
+    xbf5ec9eec0b06faa(["games_file"]):::uptodate --> x574e5c623f867900(["games"]):::outdated
+    x7e5555b2e63a26f0(["best_wflow"]):::outdated --> x9b0c9170b8902027(["best_model"]):::outdated
+    xfcd66df9fb8c7e8a(["wflows"]):::outdated --> x9b0c9170b8902027(["best_model"]):::outdated
+    x18c439c1d0279e5c(["vetiver_model"]):::outdated --> xeffe44ed84879274(["model_meta"]):::outdated
+    xf06d6eef7829004f(["glmnet_wflow"]):::outdated --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::outdated
+    x1bddabfef734c169(["my_metrics"]):::outdated --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::outdated
+    xbd276234e7c5b0df(["tune_control"]):::outdated --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::outdated
+    x7c91a03970e15376(["valid_split"]):::outdated --> xf7b68bfa4f5b3a26(["glmnet_tuned"]):::outdated
+    xe7c688145125e4e7(["glmnet_mod"]):::outdated --> xf06d6eef7829004f(["glmnet_wflow"]):::outdated
+    xc88728c0e923dd78(["linear_recipe"]):::outdated --> xf06d6eef7829004f(["glmnet_wflow"]):::outdated
+    xe28457b7180d9865(["split"]):::outdated --> x50558fc6e6286095(["train_data"]):::outdated
+    x88354a4a9990c907(["collection_and_games"]):::outdated --> xe28457b7180d9865(["split"]):::outdated
+    xad2d2a7a16304874(["lightgbm_wflow"]):::outdated --> x3045fd98bf132297(["lightgbm_tuned"]):::outdated
+    x1bddabfef734c169(["my_metrics"]):::outdated --> x3045fd98bf132297(["lightgbm_tuned"]):::outdated
+    xbd276234e7c5b0df(["tune_control"]):::outdated --> x3045fd98bf132297(["lightgbm_tuned"]):::outdated
+    x7c91a03970e15376(["valid_split"]):::outdated --> x3045fd98bf132297(["lightgbm_tuned"]):::outdated
+    xfcd66df9fb8c7e8a(["wflows"]):::outdated --> x7e5555b2e63a26f0(["best_wflow"]):::outdated
+    xe28457b7180d9865(["split"]):::outdated --> xbb782543df7528d1(["test_data"]):::outdated
+    x004377234d3bacac(["recipe"]):::outdated --> x52a5839037ffcfae(["pca_recipe"]):::outdated
   end
+  classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
   classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
   classDef none stroke:#000000,color:#000000,fill:#94a4ac;
   linkStyle 0 stroke-width:0px;
+  linkStyle 1 stroke-width:0px;
 ```
 
 to run the pipeline:
@@ -97,26 +108,27 @@ valid =
     get_file_history("targets-runs/valid_metrics.csv")
 
 valid |>
-    dplyr::select(-message) |>
+    group_by(wflow_id )|>
+    slice_max(when, n =1) |>
+    ungroup() |>
+    select(sha, when, wflow_id, .config, .metric, mean, model, rank) |>
+    pivot_wider(
+        names_from = .metric,
+        values_from = mean
+    ) |>
+    arrange(mn_log_loss) |>
     gt::gt() |>
     gt::as_raw_html()
 ```
 
-<div>
-
-<div id="bpzeovbhsz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="murriiuppj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
-|      sha |        when         | author                     | wflow_id               | .config               | .metric     |       mean | std_err |   n | preprocessor | model        | rank |
-|---------:|:-------------------:|:---------------------------|:-----------------------|:----------------------|:------------|-----------:|:-------:|----:|:-------------|:-------------|-----:|
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | mn_log_loss | 0.07257506 |   NA    |   1 | recipe       | logistic_reg |    1 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | pr_auc      | 0.27754573 |   NA    |   1 | recipe       | logistic_reg |    1 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | roc_auc     | 0.93380918 |   NA    |   1 | recipe       | logistic_reg |    1 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.07886975 |   NA    |   1 | recipe       | boost_tree   |    2 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.23035233 |   NA    |   1 | recipe       | boost_tree   |    2 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.92543421 |   NA    |   1 | recipe       | boost_tree   |    2 |
-
-</div>
+| sha | when | wflow_id | .config | model | rank | mn_log_loss | pr_auc | roc_auc |
+|:---|:--:|:---|:---|:---|---:|---:|---:|---:|
+| 0a4d09f1 | 2024-08-14 21:33:43 | glmnet_full_features | Preprocessor1_Model08 | logistic_reg | 1 | 0.07257506 | 0.2775457 | 0.9338092 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | glmnet_pca | Preprocessor1_Model05 | logistic_reg | 2 | 0.07560460 | 0.2605727 | 0.9012134 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | lightgbm_full_features | Preprocessor1_Model04 | boost_tree | 3 | 0.07886975 | 0.2303523 | 0.9254342 |
 
 </div>
 
@@ -127,25 +139,24 @@ test =
     get_file_history("targets-runs/test_metrics.csv")
 
 test |>
-    dplyr::select(-message) |>
+    group_by(wflow_id) |>
+    slice_max(when, n =1) |>
+    ungroup() |>
+    select(sha, when, version, wflow_id, .metric, .estimate) |>
+    pivot_wider(
+        names_from = .metric,
+        values_from = .estimate
+    ) |>
+    arrange(mn_log_loss) |>
     gt::gt() |>
     gt::as_raw_html()
 ```
 
-<div>
-
-<div id="wlfgratzlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hxzgiwowhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
-| sha      |                when | author                     | wflow_id             | version                | .metric     | .estimator |  .estimate |
-|:---------|--------------------:|:---------------------------|:---------------------|:-----------------------|:------------|:-----------|-----------:|
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | roc_auc     | binary     | 0.96718364 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | pr_auc      | binary     | 0.07228537 |
-| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | mn_log_loss | binary     | 0.01145525 |
-| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | roc_auc     | binary     | 0.96718364 |
-| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | pr_auc      | binary     | 0.07228537 |
-| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | mn_log_loss | binary     | 0.01145525 |
-
-</div>
+| sha | when | version | wflow_id | roc_auc | pr_auc | mn_log_loss |
+|:---|:--:|:---|:---|---:|---:|---:|
+| 0a4d09f1 | 2024-08-14 21:33:43 | 20240814T203541Z-60514 | glmnet_full_features | 0.9671836 | 0.07228537 | 0.01145525 |
 
 </div>
