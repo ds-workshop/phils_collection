@@ -17,9 +17,6 @@ get_file_history = function(file = file) {
                         commits |>
                         purrr::pluck(.x)
                     
-                    author = 
-                        commit
-                    
                     # get sha of commit
                     shas = 
                         commit |>
