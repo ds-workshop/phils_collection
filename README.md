@@ -121,14 +121,14 @@ valid |>
     gt::as_raw_html()
 ```
 
-<div id="bymzglrctl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="murriiuppj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | sha | when | wflow_id | .config | model | rank | mn_log_loss | pr_auc | roc_auc |
 |:---|:--:|:---|:---|:---|---:|---:|---:|---:|
-| 8143a62d | 2024-08-14 21:30:00 | glmnet_full_features | Preprocessor1_Model08 | logistic_reg | 1 | 0.07257506 | 0.2775457 | 0.9338092 |
-| 8143a62d | 2024-08-14 21:30:00 | glmnet_pca | Preprocessor1_Model05 | logistic_reg | 2 | 0.07560460 | 0.2605727 | 0.9012134 |
-| 8143a62d | 2024-08-14 21:30:00 | lightgbm_full_features | Preprocessor1_Model04 | boost_tree | 3 | 0.07886975 | 0.2303523 | 0.9254342 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | glmnet_full_features | Preprocessor1_Model08 | logistic_reg | 1 | 0.07257506 | 0.2775457 | 0.9338092 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | glmnet_pca | Preprocessor1_Model05 | logistic_reg | 2 | 0.07560460 | 0.2605727 | 0.9012134 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | lightgbm_full_features | Preprocessor1_Model04 | boost_tree | 3 | 0.07886975 | 0.2303523 | 0.9254342 |
 
 </div>
 
@@ -152,11 +152,11 @@ test |>
     gt::as_raw_html()
 ```
 
-<div id="xpaxvqhbse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hxzgiwowhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | sha | when | version | wflow_id | roc_auc | pr_auc | mn_log_loss |
 |:---|:--:|:---|:---|---:|---:|---:|
-| 8143a62d | 2024-08-14 21:30:00 | 20240814T203541Z-60514 | glmnet_full_features | 0.9671836 | 0.07228537 | 0.01145525 |
+| 0a4d09f1 | 2024-08-14 21:33:43 | 20240814T203541Z-60514 | glmnet_full_features | 0.9671836 | 0.07228537 | 0.01145525 |
 
 </div>
