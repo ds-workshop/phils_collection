@@ -1,4 +1,4 @@
 "","wflow_id","version",".metric",".estimator",".estimate"
-"1","glmnet_full_features","20240814T171719Z-6e357","roc_auc","binary",0.967183635614184
-"2","glmnet_full_features","20240814T171719Z-6e357","pr_auc","binary",0.0722853717815112
-"3","glmnet_full_features","20240814T171719Z-6e357","mn_log_loss","binary",0.0114552486035949
+"1","glmnet_full_features","20240814T203541Z-60514","roc_auc","binary",0.967183635614184
+"2","glmnet_full_features","20240814T203541Z-60514","pr_auc","binary",0.0722853717815112
+"3","glmnet_full_features","20240814T203541Z-60514","mn_log_loss","binary",0.0114552486035949

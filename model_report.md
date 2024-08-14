@@ -44,8 +44,8 @@ transparent, responsible reporting for a trained machine learning model.
 ## Model details
 
 - A glmnet classification modeling workflow using 15 features
-- Version 20240814T171719Z-6e357 of this model was published at
-  2024-08-14 12:17:19
+- Version 20240814T203541Z-60514 of this model was published at
+  2024-08-14 15:35:41
 
 ## Model candidates
 
@@ -66,17 +66,20 @@ valid_metrics |>
 
 <div>
 
-<div id="wktazbbyhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hhsujfouku" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | wflow_id               | .config               | .metric     |  mean | std_err |   n | preprocessor | model        | rank |
 |:-----------------------|:----------------------|:------------|------:|--------:|----:|:-------------|:-------------|-----:|
 | glmnet_full_features   | Preprocessor1_Model08 | mn_log_loss | 0.073 |      NA |   1 | recipe       | logistic_reg |    1 |
-| lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.079 |      NA |   1 | recipe       | boost_tree   |    2 |
+| glmnet_pca             | Preprocessor1_Model05 | mn_log_loss | 0.076 |      NA |   1 | recipe       | logistic_reg |    2 |
+| lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.079 |      NA |   1 | recipe       | boost_tree   |    3 |
 | glmnet_full_features   | Preprocessor1_Model08 | pr_auc      | 0.278 |      NA |   1 | recipe       | logistic_reg |    1 |
-| lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.230 |      NA |   1 | recipe       | boost_tree   |    2 |
+| glmnet_pca             | Preprocessor1_Model05 | pr_auc      | 0.261 |      NA |   1 | recipe       | logistic_reg |    2 |
+| lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.230 |      NA |   1 | recipe       | boost_tree   |    3 |
 | glmnet_full_features   | Preprocessor1_Model08 | roc_auc     | 0.934 |      NA |   1 | recipe       | logistic_reg |    1 |
-| lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.925 |      NA |   1 | recipe       | boost_tree   |    2 |
+| glmnet_pca             | Preprocessor1_Model05 | roc_auc     | 0.901 |      NA |   1 | recipe       | logistic_reg |    2 |
+| lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.925 |      NA |   1 | recipe       | boost_tree   |    3 |
 
 </div>
 
@@ -124,7 +127,7 @@ test_data |>
 
 <div>
 
-<div id="fpedxoxhzq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vddafzknpp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | n    |
@@ -164,7 +167,7 @@ preds |>
 
 <div>
 
-<div id="ritcswbhkp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vyyzcnceoa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | .metric     | .estimator | .estimate |
@@ -215,7 +218,7 @@ preds |>
 
 <div>
 
-<div id="myxhcuvata" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ftcyqttkbf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | game_id | name                                                                | yearpublished | .pred_yes | own |
