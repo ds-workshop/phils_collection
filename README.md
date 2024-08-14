@@ -89,3 +89,63 @@ functions used in the pipeline
 # results
 
 tracking results from pipeline runs:
+
+## validation set
+
+``` r
+valid = 
+    get_file_history("targets-runs/valid_metrics.csv")
+
+valid |>
+    dplyr::select(-message) |>
+    gt::gt() |>
+    gt::as_raw_html()
+```
+
+<div>
+
+<div id="bpzeovbhsz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  
+
+|      sha |        when         | author                     | wflow_id               | .config               | .metric     |       mean | std_err |   n | preprocessor | model        | rank |
+|---------:|:-------------------:|:---------------------------|:-----------------------|:----------------------|:------------|-----------:|:-------:|----:|:-------------|:-------------|-----:|
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | mn_log_loss | 0.07257506 |   NA    |   1 | recipe       | logistic_reg |    1 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | pr_auc      | 0.27754573 |   NA    |   1 | recipe       | logistic_reg |    1 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features   | Preprocessor1_Model08 | roc_auc     | 0.93380918 |   NA    |   1 | recipe       | logistic_reg |    1 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | mn_log_loss | 0.07886975 |   NA    |   1 | recipe       | boost_tree   |    2 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | pr_auc      | 0.23035233 |   NA    |   1 | recipe       | boost_tree   |    2 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | lightgbm_full_features | Preprocessor1_Model04 | roc_auc     | 0.92543421 |   NA    |   1 | recipe       | boost_tree   |    2 |
+
+</div>
+
+</div>
+
+## test set
+
+``` r
+test = 
+    get_file_history("targets-runs/test_metrics.csv")
+
+test |>
+    dplyr::select(-message) |>
+    gt::gt() |>
+    gt::as_raw_html()
+```
+
+<div>
+
+<div id="wlfgratzlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  
+
+| sha      |                when | author                     | wflow_id             | version                | .metric     | .estimator |  .estimate |
+|:---------|--------------------:|:---------------------------|:---------------------|:-----------------------|:------------|:-----------|-----------:|
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | roc_auc     | binary     | 0.96718364 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | pr_auc      | binary     | 0.07228537 |
+| 61076076 | 2024-08-14 17:23:42 | phil.henrickson@github.com | glmnet_full_features | 20240814T171719Z-6e357 | mn_log_loss | binary     | 0.01145525 |
+| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | roc_auc     | binary     | 0.96718364 |
+| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | pr_auc      | binary     | 0.07228537 |
+| 25edf253 | 2024-08-14 16:52:51 | phil.henrickson@github.com | glmnet_full_features | 20240814T164134Z-6e357 | mn_log_loss | binary     | 0.01145525 |
+
+</div>
+
+</div>
