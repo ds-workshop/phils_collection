@@ -250,6 +250,27 @@ list(
             vetiver_model |>
             pin_model(board = model_board())
     ),
+    # predict test set and commit metrics
+    tar_target(
+        test_metrics,
+        command = 
+            vetiver::vetiver_pin_read(board = model_board(),
+                                      name = model_meta$name,
+                                      version = model_meta$version) |>
+            augment(test_data) |>
+            group_by(wflow_id = model_meta$name,
+                     version = model_meta$version) |>
+            my_metrics(truth = own,
+                       .pred_yes,
+                       event_level = 'second')
+    ),
+    # write metrics
+    tar_target(
+        write_metrics,
+        command = 
+            test_metrics |>
+            write.csv("targets-runs/test_metrics.csv")
+    ),
     # render quarto report
     tar_quarto(
         model_report,
