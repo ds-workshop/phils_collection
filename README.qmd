@@ -1,0 +1,77 @@
+---
+title: "README"
+format: gfm
+editor: source
+---
+
+# phils_collection
+
+can you predict which board games phil wants to add to his collection?
+
+this project illustrates using `targets` to create a predictive modeling pipeline with `tidymodels`. this pipeline produces a `vetiver` model and a model report card.
+
+```{r}
+#| message: false
+#| echo: false
+#| results: "asis"
+
+cat(c("```mermaid", targets::tar_mermaid(targets_only = T), "```"), sep = "\n")
+
+```
+
+to run the pipeline:
+
+1. run `renv::restore()` to restore project dependencies
+2. run `targets::tar_make()` to execute the pipeline
+
+## data
+
+**games** - a snapshot of all games from boardgamegeek
+
+**collection** - a snapshot of phil's board game collection
+
+## src
+
+functions used in the pipeline
+
+# results
+
+tracking results from pipeline runs:
+
+```{r}
+#| include: false
+#| 
+# get functions used in targets
+targets::tar_source("src/")
+
+```
+
+
+## validation set
+
+```{r}
+
+valid = 
+    get_file_history("targets-runs/valid_metrics.csv")
+
+valid |>
+    dplyr::select(-message) |>
+    gt::gt() |>
+    gt::as_raw_html()
+
+```
+
+## test set
+
+```{r}
+
+test = 
+    get_file_history("targets-runs/test_metrics.csv")
+
+test |>
+    dplyr::select(-message) |>
+    gt::gt() |>
+    gt::as_raw_html()
+
+```
+

@@ -1,0 +1,149 @@
+---
+title: "Model Card"
+date: '`r Sys.Date()`'
+format:
+    gfm:
+        warning: false
+        message: false
+        fig-height: 5
+        fig-width: 8
+---
+
+```{r setup}
+#| message: false
+#| warning: false
+library(dplyr)
+library(ggplot2)
+library(vetiver)
+library(pins)
+library(yardstick)
+
+# targets
+targets::tar_source("src")
+targets::tar_load(model_meta)
+targets::tar_load(test_data)
+targets::tar_load(my_metrics)
+targets::tar_load(valid_metrics)
+targets::tar_load(wflows_plot)
+
+# load in model
+v <- vetiver_pin_read(board = model_board(),
+                      name = model_meta$name,
+                      version = model_meta$version)
+
+# get metadata
+v_meta <- pin_meta(board = model_board(),
+                   name = model_meta$name)
+
+# set ggplot theme
+theme_set(theme_light())
+
+# create gt table with formatting
+gt_tbl = function(data) {
+    
+    data |>
+        gt::gt() |>
+        gt::as_raw_html()
+}
+
+```
+
+A [model card](https://doi.org/10.1145/3287560.3287596) provides brief, transparent, responsible reporting for a trained machine learning model.
+
+## Model details
+
+- `r cli::pluralize("{v$description} using {ncol(v$prototype)} feature{?s}")`
+- Version `r v$metadata$version` of this model was published at `r v_meta$created`
+
+## Model candidates {.tabset}
+
+- Workflows trained and evaluated on the validation set
+
+```{r}
+#| fig-height: 5
+#| fig-width: 10
+wflows_plot
+```
+
+```{r}
+
+valid_metrics |>
+    arrange(.metric) |>
+    mutate_if(is.numeric, round, 3) |>
+    gt_tbl()
+
+```
+
+## Training data & evaluation data
+
+- The training dataset for this model has the "prototype" or signature:
+
+```{r}
+glimpse(v$prototype)
+```
+
+- The model was trained on `v$metadata$user$split$data |> bind_cols() |> nrow()` games published through `r `v$metadata$user$end_train_year`
+
+- The evaluation dataset used in this model card is `test_data`, which contains games from the following years:
+
+```{r}
+test_data |>
+    group_by(yearpublished) |>
+    count() |>
+    gt_tbl()
+```
+
+## Quantitative analyses {.tabset}
+
+```{r}
+# predict new data (test data)
+preds <- augment(v, test_data)
+```
+
+
+### Overall model performance
+
+```{r}
+preds |>
+    my_metrics(own, 
+               .pred_yes,
+               event_level = 'second') |>
+    mutate_if(is.numeric, round, 3) |>
+    gt_tbl()
+```
+
+### Visualize model performance
+
+```{r}
+preds |>
+    yardstick::roc_curve(
+        truth = own,
+        .pred_yes,
+        event_level = 'second'
+    ) |>
+    autoplot()
+```
+
+### Separation
+
+```{r}
+preds |>
+    plot_separation()
+```
+
+
+## Predictions
+
+Top predictions from the model
+
+```{r}
+
+preds |>
+    slice_max(.pred_yes, n = 50) |>
+    arrange(desc(.pred_yes)) |>
+    mutate_if(is.numeric, round, 3) |>
+    select(game_id, name, yearpublished, .pred_yes, own) |>
+    gt_tbl()
+```
+
+
