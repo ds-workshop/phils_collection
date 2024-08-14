@@ -825,3 +825,34 @@ write_results <- function(data, file = "targets-runs/results.csv") {
 
   write.csv(results, file)
 }
+
+pin_model = function(model,
+                     board,
+                     ...) {
+    
+    model |>
+        vetiver::vetiver_pin_write(
+            board = board
+        )
+    
+    meta =
+        pins::pin_meta(
+            board = board,
+            name = model$model_name
+        )
+    
+    tibble(
+        name = model$model_name,
+        hash = meta$pin_hash,
+        version = meta$local$version
+    )
+}
+
+# function to create model board
+model_board = function(path = "models",
+                       versioned = T) {
+    
+    pins::board_folder(path = path,
+                       versioned = T)
+    
+}

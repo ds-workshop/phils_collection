@@ -35,9 +35,19 @@ end_train_year = 2021
 valid_years = 2
 min_ratings = 100
 
+# function to create model board
+model_board = function(path = "models",
+                       versioned = T) {
+    
+    pins::board_folder(path = path,
+                       versioned = T)
+    
+}
+
 # tar_source("other_functions.R") # Source other scripts as needed.
 # Replace the target list below with your own:
 list(
+    # data
     tar_target(
         games_file,
         command = 'data/raw/games',
@@ -183,20 +193,6 @@ list(
                 control = tune_control
             )
     ),
-    # plot tuning results
-    tar_target(
-        glmnet_plot,
-        command = 
-            glmnet_tuned |>
-            autoplot()
-    ),
-    #
-    tar_target(
-        lightgbm_plot,
-        command = 
-            lightgbm_tuned |>
-            autoplot()
-    ),
     # convert to workflow set
     tar_target(
         wflows,
@@ -205,6 +201,13 @@ list(
                 "glmnet_full_features" = glmnet_tuned,
                 "lightgbm_full_features" = lightgbm_tuned
             )
+    ),
+    # tuning plot
+    tar_target(
+        wflows_plot,
+        command = 
+            wflows |>
+            autoplot(type = 'wflow_id')
     ),
     # collect results from worfklow sets
     tar_target(
@@ -240,18 +243,30 @@ list(
                 )
             )
     ),
-    # predict test data
+    # pin model
     tar_target(
-        test_preds,
-        vetiver_model |>
-            augment(test_data)
+        model_meta,
+        command = 
+            vetiver_model |>
+            pin_model(board = model_board())
     ),
-    # evaluate test results
-    tar_target(
-        test_metrics,
-        test_preds |>
-            my_metrics(truth = own,
-                       .pred_yes,
-                       event_level = 'second')
+    # render quarto report
+    tar_render(
+        model_report,
+        "model_report.qmd"
     )
+    # # predict test data
+    # tar_target(
+    #     test_preds,
+    #     vetiver_model |>
+    #         augment(test_data)
+    # ),
+    # # evaluate test results
+    # tar_target(
+    #     test_metrics,
+    #     test_preds |>
+    #         my_metrics(truth = own,
+    #                    .pred_yes,
+    #                    event_level = 'second')
+    # )
 )
