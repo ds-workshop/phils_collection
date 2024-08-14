@@ -43,6 +43,7 @@ tracking results from pipeline runs:
 
 # packages
 library(dplyr)
+library(tidyr)
 # get functions used in targets
 targets::tar_source("src/")
 
