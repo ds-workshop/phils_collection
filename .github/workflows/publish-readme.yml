@@ -39,9 +39,7 @@ jobs:
           cache-version: 1
         env:
           RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.rstudio.com/all/latest
-
-      - name: install Quarto
-
+          
       - name: Run README
         shell: bash
       - run: |
