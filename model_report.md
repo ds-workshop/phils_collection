@@ -44,8 +44,8 @@ transparent, responsible reporting for a trained machine learning model.
 ## Model details
 
 - A glmnet classification modeling workflow using 15 features
-- Version 20240814T151510Z-6e357 of this model was published at
-  2024-08-14 10:15:10
+- Version 20240814T164134Z-6e357 of this model was published at
+  2024-08-14 11:41:34
 
 ## Model candidates
 
@@ -66,7 +66,7 @@ valid_metrics |>
 
 <div>
 
-<div id="pyqsbvxlcu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oborwfyiwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | wflow_id               | .config               | .metric     |  mean | std_err |   n | preprocessor | model        | rank |
@@ -162,23 +162,41 @@ glimpse(v$prototype)
     $ components  <chr> 
     $ themes      <chr> 
 
-- The evaluation dataset used in this model card is `test_data`
+- The model was trained on
+  `v$metadata$user$split$data |> bind_cols() |> nrow()` games published
+  through `r`v$metadata$user\$end_train_year\`
+
+- The evaluation dataset used in this model card is `test_data`, which
+  contains games from the following years:
 
 ``` r
 test_data |>
     group_by(yearpublished) |>
-    count()
+    count() |>
+    gt_tbl()
 ```
 
-    # A tibble: 5 × 2
-    # Groups:   yearpublished [5]
-      yearpublished     n
-              <int> <int>
-    1          2022  4861
-    2          2023  4870
-    3          2024  2227
-    4          2025   180
-    5          2026     8
+<div>
+
+<div id="nycmjvfcyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  
+
+| n    |
+|:-----|
+| 2022 |
+| 4861 |
+| 2023 |
+| 4870 |
+| 2024 |
+| 2227 |
+| 2025 |
+| 180  |
+| 2026 |
+| 8    |
+
+</div>
+
+</div>
 
 ## Quantitative analyses
 
@@ -200,7 +218,7 @@ preds |>
 
 <div>
 
-<div id="oqikwbtdte" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ebaambicwk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | .metric     | .estimator | .estimate |
@@ -251,7 +269,7 @@ preds |>
 
 <div>
 
-<div id="lbcftyisoa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="uohktohfdu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
 | game_id | name                                                                | yearpublished | .pred_yes | own |

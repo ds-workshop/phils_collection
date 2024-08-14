@@ -82,12 +82,15 @@ valid_metrics |>
 glimpse(v$prototype)
 ```
 
-- The evaluation dataset used in this model card is `test_data`
+- The model was trained on `v$metadata$user$split$data |> bind_cols() |> nrow()` games published through `r `v$metadata$user$end_train_year`
+
+- The evaluation dataset used in this model card is `test_data`, which contains games from the following years:
 
 ```{r}
 test_data |>
     group_by(yearpublished) |>
-    count()
+    count() |>
+    gt_tbl()
 ```
 
 ## Quantitative analyses {.tabset}

@@ -237,7 +237,7 @@ list(
             best_model |> 
             vetiver::vetiver_model(
                 model_name = best_wflow,
-                metadata = list(split = split,
+                metadata = list(split = valid_split,
                                 end_train_year = end_train_year,
                                 metrics = valid_metrics
                 )

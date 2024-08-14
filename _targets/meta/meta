@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|b7610eea31d79a8d|||||||||||||||
+.Random.seed|object|660f759c6a99a6ef|||||||||||||||
 add_bgg_dummies|function|fa1015334b0b14d4|||||||||||||||
 add_bgg_preprocessing|function|a3b7fc79bf5c7246|||||||||||||||
 add_dummies|function|01feea013a37a6e1|||||||||||||||
@@ -57,8 +57,8 @@ metrics_valid|stem|11455f8764f9c536|e631cc02178f9fff|7e2cc0e1effe3a08|-68516632|
 min_ratings|object|9ad0b176bfc1180e|||||||||||||||
 min_ratinsg|object|9ad0b176bfc1180e|||||||||||||||
 model_board|function|8615848706a0f2af|||||||||||||||
-model_meta|stem|3f7079c8d06d1a78|c88b2d215c1e586d|8126a8359ad9381a|1269945170||t19949.6355921936s|af94fcb8e6165bbe|176|qs|local|vector|||7.203||
-model_report|stem|c4ed14b79f574ba2|a7bcfb4e798c3c87|c86e950af6790015|1753592154|model_report_files*model_report.md*model_report.qmd|t19949.6909182202s|ee47ce630bf124ae|117599|file|local|vector|||21.11||
+model_meta|stem|6a5584dc6744cde1|c88b2d215c1e586d|0843703267305bff|1269945170||t19949.6955632474s|af94fcb8e6165bbe|176|qs|local|vector|||5.259||
+model_report|stem|c4e22e0263484be7|a7bcfb4e798c3c87|14bfc88f1d566be0|1753592154|model_report_files*model_report.md*model_report.qmd|t19949.6966116375s|8620102dd2695423|141121|file|local|vector|||17.829||
 model_spec|stem|73d86d34951de6cc|2dae7270ad4cce84|ef46db3751d8e999|-1375492627||t19830.0551800222s|b118d73574f00f7d|299|qs|local|vector|||0.003||
 model_version|stem|0e6e47f1eb983a24|778530e76d78995d|c2c4ed00ad377c77|-1449498913||t19949.6214651524s|402e589872025b0a|147|qs|local|vector|||7.268||
 models|stem||b4c319d2733d8907|70b23751deeb8ff2|-2121144874||t19948.733871575s||0|qs|local|vector|||0.006||unused argument glmnet_full_features  glmnet_tuned
@@ -100,7 +100,7 @@ valid_metrics|stem|d9e1556fb89fa1ac|19120fe0beb469f9|d314a98586590546|-843320082
 valid_split|stem|faea5748ee8040a0|1debd880d6bf5534|6dc0f54b574c8d8e|154514641||t19948.7143790071s|d10c4e651b04c438|8384125|qs|local|vector|||0.212||
 valid_years|object|1f35528bd840b63d|||||||||||||||
 validate_user_model|function|50c993473be9c3de|||||||||||||||
-vetiver_model|stem|fef8443df0a3328e|313f84b25ce29814|77954244fe233114|531302810||t19948.8863341394s|a39464975b8eae9b|38577897|qs|local|vector|||0.179||
+vetiver_model|stem|95645fd45fdfd443|b53a3ca4c1a1a687|8f7d19f50f66a9b1|531302810||t19949.695499972s|22cdfd4d048fa386|32147447|qs|local|vector|||0.332||
 wflow|stem|014ef96301ec0467|fdd4182e2034a766|b38381010c6b1a58|891752335||t19830.089678369s|94f7965250f8fd1f|702889265|qs|local|vector|||0.003||
 wflows|stem|403cf8ac0982846b|386d0587de4c5550|67cb5fd1ef40b3ea|-1439832126||t19948.7859105622s|16946f0727111ebd|802384839|qs|local|vector|||0.005||
 wflows_plot|stem|f3708f3ef61df906|40375f4d8cd1997f|d314a98586590546|422172717||t19949.6614542117s|0afddc0f65670947|802468762|qs|local|vector|||0.102||
