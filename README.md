@@ -111,7 +111,7 @@ valid |>
     group_by(wflow_id )|>
     slice_max(when, n =1) |>
     ungroup() |>
-    select(sha, when, author, wflow_id, .config, .metric, mean, model, rank) |>
+    select(sha, when, wflow_id, .config, .metric, mean, model, rank) |>
     pivot_wider(
         names_from = .metric,
         values_from = mean
@@ -121,14 +121,14 @@ valid |>
     gt::as_raw_html()
 ```
 
-<div id="kjsewdjgnm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bymzglrctl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
-| sha | when | author | wflow_id | .config | model | rank | mn_log_loss | pr_auc | roc_auc |
-|:---|:--:|:---|:---|:---|:---|---:|---:|---:|---:|
-| 459f773e | 2024-08-14 21:18:30 | noreply@github.com | glmnet_full_features | Preprocessor1_Model08 | logistic_reg | 1 | 0.07257506 | 0.2775457 | 0.9338092 |
-| 459f773e | 2024-08-14 21:18:30 | noreply@github.com | glmnet_pca | Preprocessor1_Model05 | logistic_reg | 2 | 0.07560460 | 0.2605727 | 0.9012134 |
-| 459f773e | 2024-08-14 21:18:30 | noreply@github.com | lightgbm_full_features | Preprocessor1_Model04 | boost_tree | 3 | 0.07886975 | 0.2303523 | 0.9254342 |
+| sha | when | wflow_id | .config | model | rank | mn_log_loss | pr_auc | roc_auc |
+|:---|:--:|:---|:---|:---|---:|---:|---:|---:|
+| 8143a62d | 2024-08-14 21:30:00 | glmnet_full_features | Preprocessor1_Model08 | logistic_reg | 1 | 0.07257506 | 0.2775457 | 0.9338092 |
+| 8143a62d | 2024-08-14 21:30:00 | glmnet_pca | Preprocessor1_Model05 | logistic_reg | 2 | 0.07560460 | 0.2605727 | 0.9012134 |
+| 8143a62d | 2024-08-14 21:30:00 | lightgbm_full_features | Preprocessor1_Model04 | boost_tree | 3 | 0.07886975 | 0.2303523 | 0.9254342 |
 
 </div>
 
@@ -142,7 +142,7 @@ test |>
     group_by(wflow_id) |>
     slice_max(when, n =1) |>
     ungroup() |>
-    select(sha, when, author, version, wflow_id, .metric, .estimate) |>
+    select(sha, when, version, wflow_id, .metric, .estimate) |>
     pivot_wider(
         names_from = .metric,
         values_from = .estimate
@@ -152,11 +152,11 @@ test |>
     gt::as_raw_html()
 ```
 
-<div id="hyngwxnpkb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xpaxvqhbse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  
 
-| sha | when | author | version | wflow_id | roc_auc | pr_auc | mn_log_loss |
-|:---|:--:|:---|:---|:---|---:|---:|---:|
-| 459f773e | 2024-08-14 21:18:30 | noreply@github.com | 20240814T203541Z-60514 | glmnet_full_features | 0.9671836 | 0.07228537 | 0.01145525 |
+| sha | when | version | wflow_id | roc_auc | pr_auc | mn_log_loss |
+|:---|:--:|:---|:---|---:|---:|---:|
+| 8143a62d | 2024-08-14 21:30:00 | 20240814T203541Z-60514 | glmnet_full_features | 0.9671836 | 0.07228537 | 0.01145525 |
 
 </div>
