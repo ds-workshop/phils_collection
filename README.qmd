@@ -61,7 +61,7 @@ valid |>
     group_by(wflow_id )|>
     slice_max(when, n =1) |>
     ungroup() |>
-    select(sha, when, author, wflow_id, .config, .metric, mean, model, rank) |>
+    select(sha, when, wflow_id, .config, .metric, mean, model, rank) |>
     pivot_wider(
         names_from = .metric,
         values_from = mean
@@ -83,7 +83,7 @@ test |>
     group_by(wflow_id) |>
     slice_max(when, n =1) |>
     ungroup() |>
-    select(sha, when, author, version, wflow_id, .metric, .estimate) |>
+    select(sha, when, version, wflow_id, .metric, .estimate) |>
     pivot_wider(
         names_from = .metric,
         values_from = .estimate
