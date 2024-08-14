@@ -41,7 +41,8 @@ theme_set(theme_light())
 # create gt table with formatting
 gt_tbl = function(data) {
     
-    gt::tbl() |>
+    data |>
+        gt::gt() |>
         gt::as_raw_html()
 }
 
@@ -69,27 +70,25 @@ wflows_plot
 valid_metrics |>
     arrange(.metric) |>
     mutate_if(is.numeric, round, 3) |>
-    as.data.frame()
+    gt_tbl()
 
 ```
 
 ## Training data & evaluation data
 
-- The training dataset for this model was ...
 - The training dataset for this model has the "prototype" or signature:
 
 ```{r}
 glimpse(v$prototype)
 ```
 
-- The evaluation dataset used in this model card is ...
-- We chose this evaluation data because ...
+- The evaluation dataset used in this model card is `test_data`
 
 ```{r}
 test_data |>
-    skimr::skim()
+    group_by(yearpublished) |>
+    count()
 ```
-
 
 ## Quantitative analyses {.tabset}
 
@@ -106,7 +105,8 @@ preds |>
     my_metrics(own, 
                .pred_yes,
                event_level = 'second') |>
-    mutate_if(is.numeric, round, 3)
+    mutate_if(is.numeric, round, 3) |>
+    gt_tbl()
 ```
 
 ### Visualize model performance
@@ -139,7 +139,8 @@ preds |>
     slice_max(.pred_yes, n = 50) |>
     arrange(desc(.pred_yes)) |>
     mutate_if(is.numeric, round, 3) |>
-    select(game_id, name, yearpublished, .pred_yes, own)
+    select(game_id, name, yearpublished, .pred_yes, own) |>
+    gt_tbl()
 ```
 
 
