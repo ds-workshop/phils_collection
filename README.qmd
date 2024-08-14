@@ -56,7 +56,7 @@ valid =
 
 valid |>
     gt::gt() |>
-    gt::as_raw_htm
+    gt::as_raw_html()
 
 ```
 
