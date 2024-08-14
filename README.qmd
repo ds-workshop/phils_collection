@@ -40,7 +40,9 @@ tracking results from pipeline runs:
 
 ```{r}
 #| include: false
-#| 
+
+# packages
+library(dplyr)
 # get functions used in targets
 targets::tar_source("src/")
 
@@ -55,7 +57,15 @@ valid =
     get_file_history("targets-runs/valid_metrics.csv")
 
 valid |>
-    dplyr::select(-message) |>
+    group_by(wflow_id )|>
+    slice_max(when, n =1) |>
+    ungroup() |>
+    select(sha, when, author, wflow_id, .config, .metric, mean, model, rank) |>
+    pivot_wider(
+        names_from = .metric,
+        values_from = mean
+    ) |>
+    arrange(mn_log_loss)
     gt::gt() |>
     gt::as_raw_html()
 
@@ -69,7 +79,15 @@ test =
     get_file_history("targets-runs/test_metrics.csv")
 
 test |>
-    dplyr::select(-message) |>
+    group_by(wflow_id )|>
+    slice_max(when, n =1) |>
+    ungroup() |>
+    select(sha, when, author, version, wflow_id, .metric, .estimate) |>
+    pivot_wider(
+        names_from = .metric,
+        values_from = .estimate
+    ) |>
+    arrange(mn_log_loss) |>
     gt::gt() |>
     gt::as_raw_html()
 
