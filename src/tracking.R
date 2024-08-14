@@ -9,7 +9,7 @@ get_file_history = function(file = file) {
         git2r::commits(path = file)
     
     out =
-        purrr::map(
+        purrr::map_df(
             1:length(commits),
             ~ 
                 {
@@ -78,8 +78,7 @@ get_file_history = function(file = file) {
                             dplyr::everything()
                         )
                 }
-        ) |>
-        vectors::vec_rbind()
+        )
     
     # revert to original branch
     system(paste("git checkout", current_branch))
