@@ -41,7 +41,7 @@ get_file_history = function(file = file) {
                     # get when
                     when = 
                         author |>
-                        pluck("when") |>
+                        purrr::pluck("when") |>
                         as.vector() |>
                         as.character() |>
                         as.POSIXlt()
