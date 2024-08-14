@@ -36,4 +36,40 @@ functions used in the pipeline
 
 # results
 
-tracking results from pipeline runs
+tracking results from pipeline runs:
+
+```{r}
+#| include: false
+#| 
+# get functions used in targets
+targets::tar_source("src/")
+
+```
+
+
+## validation set
+
+```{r}
+
+valid = 
+    get_file_history("targets-runs/valid_metrics.csv")
+
+valid |>
+    gt::gt() |>
+    gt::as_raw_htm
+
+```
+
+## test set
+
+```{r}
+
+test = 
+    get_file_history("targets-runs/test_metrics.csv")
+
+test |>
+    gt::gt() |>
+    gt::as_raw_html()
+
+```
+
