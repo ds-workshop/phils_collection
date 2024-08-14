@@ -251,7 +251,7 @@ list(
             pin_model(board = model_board())
     ),
     # render quarto report
-    tar_render(
+    tar_quarto(
         model_report,
         "model_report.qmd"
     )
