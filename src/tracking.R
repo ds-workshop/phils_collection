@@ -9,7 +9,7 @@ get_file_history = function(file = file) {
         git2r::commits(path = file)
     
     out =
-        map(
+        purrr::map(
             1:length(commits),
             ~ 
                 {
@@ -23,22 +23,22 @@ get_file_history = function(file = file) {
                     # get sha of commit
                     shas = 
                         commit |>
-                        pluck("sha")
+                        purrr::pluck("sha")
                     
                     # get message with commit
                     summary = 
                         commit |>
-                        pluck("summary")
+                        purrr::pluck("summary")
                     
                     # get author and details
                     author = 
                         commit |>
-                        pluck("author")
+                        purrr::pluck("author")
                     
                     # get email
                     email = 
                         author |>
-                        pluck("email") |>
+                        purrr::pluck("email") |>
                         as.vector()
                     
                     # get when
@@ -75,7 +75,7 @@ get_file_history = function(file = file) {
                             when,
                             author,
                             message,
-                            tidyr::everything()
+                            dplyr::everything()
                         )
                 }
         ) |>
