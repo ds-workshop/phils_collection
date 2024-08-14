@@ -118,6 +118,15 @@ list(
         recipe |>
             add_bgg_preprocessing()
     ),
+    # create recipe with pca at the end
+    tar_target(
+        pca_recipe,
+        recipe |>
+            add_bgg_preprocessing() |>
+            add_linear_preprocessing() |>
+            step_pca(all_numeric_predictors(),
+                     threshold = 0.5)
+    ),
     # create model specs
     # logistic regression
     tar_target(
@@ -150,6 +159,13 @@ list(
             workflow() |>
             add_model(lightgbm_mod) |>
             add_recipe(trees_recipe)
+    ),
+    tar_target(
+        glmnet_pca_wflow,
+        command = 
+            workflow() |>
+            add_model(glmnet_mod) |>
+            add_recipe(pca_recipe)
     ),
     # control tuning
     tar_target(
@@ -193,13 +209,24 @@ list(
                 control = tune_control
             )
     ),
+    tar_target(
+        glmnet_pca_tuned,
+        glmnet_pca_wflow |>
+            tune_grid(
+                resamples = valid_split |> make_rset(),
+                grid = glmnet_grid(),
+                metrics = my_metrics,
+                control = tune_control
+            )
+    ),
     # convert to workflow set
     tar_target(
         wflows,
         command = 
             as_workflow_set(
                 "glmnet_full_features" = glmnet_tuned,
-                "lightgbm_full_features" = lightgbm_tuned
+                "lightgbm_full_features" = lightgbm_tuned,
+                "glmnet_pca" = glmnet_pca_tuned
             )
     ),
     # tuning plot
@@ -273,7 +300,7 @@ list(
                 test_metrics |> write.csv("targets-runs/test_metrics.csv")
                 valid_metrics |> write.csv("targets-runs/valid_metrics.csv")
             }
-
+        
     ),
     # render quarto report
     tar_quarto(
