@@ -9,13 +9,13 @@ get_file_history = function(file = file) {
         git2r::commits(path = file)
     
     out =
-        map_df(
+        map(
             1:length(commits),
             ~ 
                 {
                     commit =
                         commits |>
-                        pluck(.x)
+                        purrr::pluck(.x)
                     
                     author = 
                         commit
@@ -78,7 +78,8 @@ get_file_history = function(file = file) {
                             tidyr::everything()
                         )
                 }
-        )
+        ) |>
+        vectors::vec_rbind()
     
     # revert to original branch
     system(paste("git checkout", current_branch))
